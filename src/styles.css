@@ -152,5 +152,25 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: 'Barlow', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.02em;
   }
 }
+
+@utility bg-gradient-hero { background-image: var(--gradient-hero); }
+@utility bg-gradient-brand { background-image: var(--gradient-brand); }
+@utility bg-gradient-card { background-image: var(--gradient-card); }
+@utility shadow-card { box-shadow: var(--shadow-card); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility transition-smooth { transition: all 0.4s var(--transition-smooth); }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@utility animate-float { animation: float-slow 6s ease-in-out infinite; }
+
