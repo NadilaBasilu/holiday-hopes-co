@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import heroImg from "@/assets/hero.jpg";
 import bangkokImg from "@/assets/bangkok.jpg";
 import malaysiaImg from "@/assets/malaysia.jpg";
-import logoImg from "@/assets/Logo Travels New.png";
+import { Navbar } from "@/components/Navbar";
+import travelerImg from "@/assets/Traveler.jpeg";
 import { Button } from "@/components/ui/button";
 import {
   Plane,
@@ -57,73 +57,59 @@ const tour2Includes = [
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navbar */}
-      <header className="absolute top-0 inset-x-0 z-30 bg-[oklch(0.25_0.08_248)] shadow-md">
-        <div className="max-w-7xl mx-auto px-6 py-0 flex items-center justify-between">
-          <a href="#">
-            <img src={logoImg} alt="Ceyline Travels" className="h-[120px] w-auto" />
-          </a>
-          <nav className="hidden md:flex items-center gap-8 text-primary-foreground/90 text-sm uppercase tracking-widest">
-            <a href="#packages" className="hover:text-accent transition-smooth">
-              Packages
-            </a>
-            <a href="#event" className="hover:text-accent transition-smooth">
-              Event
-            </a>
-            <a href="#contact" className="hover:text-accent transition-smooth">
-              Contact
-            </a>
-          </nav>
-          <a href="#contact">
-            <Button variant="secondary" className="font-semibold">
-              Book Now
-            </Button>
-          </a>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
-        <img
-          src={heroImg}
-          alt="Tropical paradise destination"
-          className="absolute inset-0 w-full h-full object-cover"
-          width={1920}
-          height={1088}
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-[#F7F7F7]">
+        {/* Mobile/Tablet: Traveler as background */}
+        <div
+          className="absolute inset-0 md:hidden bg-cover bg-top bg-no-repeat"
+          style={{ backgroundImage: `url(${travelerImg})`, backgroundSize: '75%', backgroundPosition: 'right bottom', backgroundColor: '#F7F7F7' }}
         />
-        <div className="absolute inset-0 bg-gradient-hero" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 text-primary-foreground text-xs uppercase tracking-[0.2em] mb-6">
-            <Calendar className="w-3.5 h-3.5" />
-            Sancharaka Udawa · 15 & 16 May 2026
-          </div>
-          <h1 className="font-display text-primary-foreground text-6xl md:text-8xl lg:text-9xl leading-[0.9] max-w-4xl">
-            Your next escape
-            <br />
-            starts here.
-          </h1>
-          <p className="mt-6 text-primary-foreground/85 text-lg md:text-xl max-w-xl font-light">
-            Two unforgettable holiday packages to Bangkok and Malaysia — curated by Ceyline Travels
-            with exclusive Sancharaka Udawa pricing.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a href="#packages">
-              <Button
-                size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold uppercase tracking-wider px-8"
-              >
-                Explore Packages
-              </Button>
-            </a>
-            <a href="#contact">
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10 font-semibold uppercase tracking-wider px-8"
-              >
-                Talk to us
-              </Button>
-            </a>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left: Text */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs uppercase tracking-[0.2em] mb-6">
+                <Calendar className="w-3.5 h-3.5" />
+                Sancharaka Udawa · 15 & 16 May 2026
+              </div>
+              <h1 className="text-[#0a3d8f] text-6xl md:text-8xl lg:text-[7rem] leading-[1.05] max-w-4xl font-black tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Explore <span className="italic text-[#1E90FF]">the World.</span>
+              </h1>
+              <p className="mt-6 text-gray-600 text-lg md:text-xl max-w-xl font-light">
+                Discover unforgettable memories through exclusive travel experiences, exciting adventures, and carefully curated holiday packages by Ceyline Travels.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a href="#packages">
+                  <Button
+                    size="lg"
+                    className="bg-[#1E90FF] hover:bg-[#0a3d8f] text-white font-bold uppercase tracking-wider px-8"
+                  >
+                    Explore Packages
+                  </Button>
+                </a>
+                <a href="#contact">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-[#1E90FF] text-[#1E90FF] hover:bg-blue-50 font-semibold uppercase tracking-wider px-8"
+                  >
+                    Talk to us
+                  </Button>
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Traveler Image — desktop only */}
+            <div className="hidden md:flex justify-center items-end">
+              <img
+                src={travelerImg}
+                alt="Traveler"
+                className="h-[520px] w-auto object-cover object-top translate-y-[20px]"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -356,7 +342,7 @@ function Index() {
       <footer className="bg-primary text-primary-foreground py-8">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/70">
           <div className="flex items-center">
-            <img src={logoImg} alt="Ceyline Travels" className="h-12 w-auto" />
+            <p className="font-display tracking-wider text-base text-primary-foreground/70">Ceyline Travels</p>
           </div>
           <p>© 2026 Ceyline Travels. All rights reserved.</p>
           <p className="uppercase tracking-widest text-xs">Terms & conditions apply</p>
