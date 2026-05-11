@@ -198,6 +198,18 @@
     transform: translateY(-12px);
   }
 }
-@utility animate-float {
-  animation: float-slow 6s ease-in-out infinite;
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+@utility animate-scroll-left {
+  animation: scroll-left 60s linear infinite;
+}
+@utility animate-scroll-right {
+  animation: scroll-right 30s linear infinite;
+}
+
