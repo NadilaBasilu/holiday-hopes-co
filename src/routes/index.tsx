@@ -1,6 +1,28 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import bangkokImg from "@/assets/bangkok.jpg";
 import malaysiaImg from "@/assets/malaysia.jpg";
+import indiaImg from "@/assets/India.jpg";
+import vietnamImg from "@/assets/Vietnam.jpeg";
+import maldivesImg from "@/assets/Maldives.jpg";
+import uaeImg from "@/assets/UAE.jpg";
+import chinaImg from "@/assets/China.jpg";
+import japanImg from "@/assets/Japan.jpg";
+import indonesiaImg from "@/assets/Indonesia.jpg";
+import philippinesImg from "@/assets/Philippines.jpeg";
+import turkeyImg from "@/assets/Turkey.jpg";
+import egyptImg from "@/assets/Egypt.jpg";
+import azerbaijanImg from "@/assets/Azerbaijan.jpg";
+import kenyaImg from "@/assets/Kenya.jpg";
+import tanzaniaImg from "@/assets/Tanzania.png";
+import southAfricaImg from "@/assets/South Africa.jpg";
+import franceImg from "@/assets/France.jpeg";
+import switzerlandImg from "@/assets/Switzerland.jpg";
+import liechtensteinImg from "@/assets/Liechtenstein.jpg";
+import spainImg from "@/assets/Spain.jpg";
+import portugalImg from "@/assets/Portugal.jpg";
+import italyImg from "@/assets/Italy.jpg";
+import germanyImg from "@/assets/Germany.jpg";
+import netherlandsImg from "@/assets/Netherlands.jpg";
 import { Navbar } from "@/components/Navbar";
 import travelerImg from "@/assets/Traveler.jpeg";
 import { Button } from "@/components/ui/button";
@@ -20,7 +42,7 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ceyline Travels — Bangkok & Malaysia Tour Packages | Sancharaka Udawa 2026" },
+      { title: "Ceyline Travels - Sancharaka Udawa" },
       {
         name: "description",
         content:
@@ -54,7 +76,38 @@ const tour2Includes = [
   { icon: Star, text: "Sunway Lagoon Theme Park + Private transfers" },
 ];
 
+const destinationImages = [
+  { src: bangkokImg, name: "Thailand" },
+  { src: malaysiaImg, name: "Malaysia" },
+  { src: indiaImg, name: "India" },
+  { src: vietnamImg, name: "Vietnam" },
+  { src: maldivesImg, name: "Maldives" },
+  { src: uaeImg, name: "UAE" },
+  { src: chinaImg, name: "China" },
+  { src: japanImg, name: "Japan" },
+  { src: indonesiaImg, name: "Indonesia" },
+  { src: philippinesImg, name: "Philippines" },
+  { src: turkeyImg, name: "Turkey" },
+  { src: egyptImg, name: "Egypt" },
+];
+
+const destinationImages2 = [
+  { src: azerbaijanImg, name: "Azerbaijan" },
+  { src: kenyaImg, name: "Kenya" },
+  { src: tanzaniaImg, name: "Tanzania" },
+  { src: southAfricaImg, name: "South Africa" },
+  { src: franceImg, name: "France" },
+  { src: switzerlandImg, name: "Switzerland" },
+  { src: liechtensteinImg, name: "Liechtenstein" },
+  { src: spainImg, name: "Spain" },
+  { src: portugalImg, name: "Portugal" },
+  { src: italyImg, name: "Italy" },
+  { src: germanyImg, name: "Germany" },
+  { src: netherlandsImg, name: "Netherlands" },
+];
+
 function Index() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
@@ -90,15 +143,14 @@ function Index() {
                     Explore Packages
                   </Button>
                 </a>
-                <a href="#contact">
-                  <Button
+                <Button
                     size="lg"
                     variant="outline"
                     className="border-[#1E90FF] text-[#1E90FF] hover:bg-blue-50 font-semibold uppercase tracking-wider px-8"
+                    onClick={() => navigate({ to: '/inquiry' })}
                   >
-                    Talk to us
+                    Travel Inquiry Form
                   </Button>
-                </a>
               </div>
             </div>
 
@@ -114,30 +166,18 @@ function Index() {
         </div>
       </section>
 
-      {/* Event banner */}
-      <section id="event" className="bg-gradient-brand text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-primary-foreground/70">
-              Meet us at
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl mt-1">Sancharaka Udawa 2026</h2>
-          </div>
-          <div className="flex items-center gap-3 text-primary-foreground/90">
-            <Calendar className="w-5 h-5" />
-            <span className="text-lg">
-              15<sup>th</sup> & 16<sup>th</sup> May 2026
-            </span>
-          </div>
-          <a href="#packages">
-            <Button size="lg" variant="secondary" className="font-bold uppercase tracking-wider">
-              View Show Offers
-            </Button>
-          </a>
+
+      {/* Event banner - Destination Image Carousel */}
+      <section id="event" className="bg-gradient-brand overflow-hidden py-6">
+        <div className="flex gap-4 animate-scroll-left" style={{ width: 'max-content' }}>
+          {[...destinationImages, ...destinationImages2, ...destinationImages, ...destinationImages2].map((img, i) => (
+            <div key={i} className="w-48 h-32 rounded-xl overflow-hidden flex-shrink-0">
+              <img src={img.src} alt={img.name} className="w-full h-full object-cover" />
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Packages */}
       <section id="packages" className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
