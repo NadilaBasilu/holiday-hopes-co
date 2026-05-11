@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as InquiryRouteImport } from './routes/inquiry'
 import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as IndexRouteImport } from './routes/index'
 
+const InquiryRoute = InquiryRouteImport.update({
+  id: '/inquiry',
+  path: '/inquiry',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DestinationsRoute = DestinationsRouteImport.update({
   id: '/destinations',
   path: '/destinations',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/destinations': typeof DestinationsRoute
+  '/inquiry': typeof InquiryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/destinations': typeof DestinationsRoute
+  '/inquiry': typeof InquiryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/destinations': typeof DestinationsRoute
+  '/inquiry': typeof InquiryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/destinations'
+  fullPaths: '/' | '/destinations' | '/inquiry'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/destinations'
-  id: '__root__' | '/' | '/destinations'
+  to: '/' | '/destinations' | '/inquiry'
+  id: '__root__' | '/' | '/destinations' | '/inquiry'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DestinationsRoute: typeof DestinationsRoute
+  InquiryRoute: typeof InquiryRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/inquiry': {
+      id: '/inquiry'
+      path: '/inquiry'
+      fullPath: '/inquiry'
+      preLoaderRoute: typeof InquiryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/destinations': {
       id: '/destinations'
       path: '/destinations'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DestinationsRoute: DestinationsRoute,
+  InquiryRoute: InquiryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
