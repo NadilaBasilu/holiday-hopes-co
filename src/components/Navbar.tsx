@@ -15,7 +15,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 inset-x-0 z-30 shadow-md" style={{ background: "linear-gradient(to right, #0a3d8f, #1E90FF, #63b8ff)" }}>
+    <header className="fixed top-0 inset-x-0 z-30 shadow-md" style={{ background: "linear-gradient(to right, #0a3d8f, #1E90FF, #63b8ff)" }}>
       <div className="max-w-7xl mx-auto px-6 py-0 flex items-center justify-between">
         <Link to="/" onClick={() => setOpen(false)}>
           <img src={logoImg} alt="Ceyline Travels" className="h-[120px] w-auto" />
@@ -31,9 +31,9 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Link to="/" hash="contact">
-            <Button variant="secondary" className="font-semibold">Book Now</Button>
-          </Link>
+          <Button variant="secondary" className="font-semibold" onClick={() => window.location.href = '/inquiry'}>
+            Book Now
+          </Button>
         </div>
 
         {/* Hamburger button */}
@@ -60,9 +60,7 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link to="/" hash="contact" onClick={() => setOpen(false)}>
-            <Button variant="secondary" className="w-full font-semibold mt-2">Book Now</Button>
-          </Link>
+          <Button variant="secondary" className="w-full font-semibold mt-2" onClick={() => window.location.href = '/inquiry'}>Book Now</Button>
         </div>
       )}
     </header>
