@@ -49,6 +49,7 @@ function InquiryForm() {
     email: "",
     contact: "",
     destination: "",
+    traveled: "",
     timing: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -182,6 +183,27 @@ function InquiryForm() {
                         <option key={d} value={d}>{d}</option>
                       ))}
                     </select>
+                  </div>
+
+                  {/* Traveled Abroad */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">Have you traveled abroad before? *</label>
+                    <div className="flex gap-6">
+                      {["No", "Yes"].map((option) => (
+                        <label key={option} className="flex items-center gap-2 cursor-pointer text-sm text-gray-700">
+                          <input
+                            type="radio"
+                            name="traveled"
+                            value={option}
+                            required
+                            checked={form.traveled === option}
+                            onChange={handleChange}
+                            className="accent-[#1E90FF] w-4 h-4"
+                          />
+                          {option}
+                        </label>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Trip Timing */}
