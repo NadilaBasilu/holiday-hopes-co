@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 export const Route = createFileRoute("/inquiry")({
   head: () => ({
@@ -49,8 +50,8 @@ function InquiryForm() {
     email: "",
     contact: "",
     destination: "",
-    traveled: "",
     timing: "",
+    traveled: "", // ✅ ADD THIS
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -58,9 +59,30 @@ function InquiryForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+
+    try {
+      const res = await emailjs.send(
+        "service_28kwr4a",
+        "template_vaynu6k",
+        {
+          name: form.name,
+          email: form.email,
+          contact: form.contact,
+          destination: form.destination,
+          traveled: form.traveled,
+          timing: form.timing,
+        },
+        "hRfcmdrqcFhv5t5xP",
+      );
+
+      console.log("SUCCESS:", res);
+      setSubmitted(true);
+    } catch (err) {
+      console.error("FAILED:", err);
+      alert("Email failed. Check console (F12).");
+    }
   };
 
   return (
@@ -70,43 +92,65 @@ function InquiryForm() {
       <div className="pt-[140px] pb-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
-
             {/* Left: Contact Details */}
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-[#1E90FF] mb-2">Get in touch</p>
-              <h1 className="font-display text-5xl md:text-6xl text-[#0a3d8f] mb-4">Travel Inquiry</h1>
+              <h1 className="font-display text-5xl md:text-6xl text-[#0a3d8f] mb-4">
+                Travel Inquiry
+              </h1>
               <p className="text-gray-500 mb-10 text-base leading-relaxed">
-                Fill in the form and our team will get back to you with the best travel package tailored just for you.
+                Fill in the form and our team will get back to you with the best travel package
+                tailored just for you.
               </p>
 
               <div className="flex flex-col gap-6">
-                <a href="tel:+94114511064" className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-smooth">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0" style={{ background: "linear-gradient(135deg, #0a3d8f, #1E90FF)" }}>
+                <div className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-smooth">
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0"
+                    style={{ background: "linear-gradient(135deg, #0a3d8f, #1E90FF)" }}
+                  >
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-widest text-gray-400">Call us</p>
-                    <p className="text-[#0a3d8f] font-semibold text-lg">+94 11 4511064</p>
+                    <div className="flex flex-col gap-1 mt-1">
+                      <p className="text-[#0a3d8f] font-semibold text-lg">+94 11 4511064</p>
+                      <p className="text-[#0a3d8f] font-semibold text-lg">+94 76 8422000</p>
+                      <p className="text-[#0a3d8f] font-semibold text-lg">+94 77 2824362</p>
+                    </div>
                   </div>
-                </a>
+                </div>
 
-                <a href="mailto:travels@ceyline.lk" className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-smooth">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0" style={{ background: "linear-gradient(135deg, #0a3d8f, #1E90FF)" }}>
+                <a
+                  href="mailto:outbound@ceyline.lk"
+                  className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-smooth"
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0"
+                    style={{ background: "linear-gradient(135deg, #0a3d8f, #1E90FF)" }}
+                  >
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-widest text-gray-400">Email us</p>
-                    <p className="text-[#0a3d8f] font-semibold text-lg">travels@ceyline.lk</p>
+                    <p className="text-[#0a3d8f] font-semibold text-lg">outbound@ceyline.lk</p>
                   </div>
                 </a>
 
                 <div className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0" style={{ background: "linear-gradient(135deg, #0a3d8f, #1E90FF)" }}>
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0"
+                    style={{ background: "linear-gradient(135deg, #0a3d8f, #1E90FF)" }}
+                  >
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-widest text-gray-400">Visit us</p>
-                    <p className="text-[#0a3d8f] font-semibold">No 536, R A De Mel Mawatha,<br />Colombo 3, Sri Lanka</p>
+                    <p className="text-[#0a3d8f] font-semibold">
+                      No 536, R A De Mel Mawatha,
+                      <br />
+                      Colombo 3, Sri Lanka
+                    </p>
                   </div>
                 </div>
               </div>
@@ -120,7 +164,9 @@ function InquiryForm() {
                     <Send className="w-7 h-7 text-green-600" />
                   </div>
                   <h2 className="font-display text-3xl text-[#0a3d8f] mb-2">Thank You!</h2>
-                  <p className="text-gray-500">We've received your inquiry and will contact you shortly.</p>
+                  <p className="text-gray-500">
+                    We've received your inquiry and will contact you shortly.
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -128,7 +174,9 @@ function InquiryForm() {
 
                   {/* Name */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">Full Name *</label>
+                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+                      Full Name *
+                    </label>
                     <input
                       type="text"
                       name="name"
@@ -142,7 +190,9 @@ function InquiryForm() {
 
                   {/* Email */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">Email Address *</label>
+                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+                      Email Address *
+                    </label>
                     <input
                       type="email"
                       name="email"
@@ -156,7 +206,9 @@ function InquiryForm() {
 
                   {/* Contact Number */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">Contact Number *</label>
+                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+                      Contact Number *
+                    </label>
                     <input
                       type="tel"
                       name="contact"
@@ -166,23 +218,6 @@ function InquiryForm() {
                       placeholder="+94 XX XXX XXXX"
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F7F7F7] text-gray-800 text-sm focus:outline-none focus:border-[#1E90FF] focus:ring-1 focus:ring-[#1E90FF] transition-smooth"
                     />
-                  </div>
-
-                  {/* Destination */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">Destination Interested In *</label>
-                    <select
-                      name="destination"
-                      required
-                      value={form.destination}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F7F7F7] text-gray-800 text-sm focus:outline-none focus:border-[#1E90FF] focus:ring-1 focus:ring-[#1E90FF] transition-smooth"
-                    >
-                      <option value="">Select a destination</option>
-                      {destinations.map((d) => (
-                        <option key={d} value={d}>{d}</option>
-                      ))}
-                    </select>
                   </div>
 
                   {/* Traveled Abroad */}
@@ -206,9 +241,32 @@ function InquiryForm() {
                     </div>
                   </div>
 
+                  {/* Destination */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+                      Destination Interested In *
+                    </label>
+                    <select
+                      name="destination"
+                      required
+                      value={form.destination}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F7F7F7] text-gray-800 text-sm focus:outline-none focus:border-[#1E90FF] focus:ring-1 focus:ring-[#1E90FF] transition-smooth"
+                    >
+                      <option value="">Select a destination</option>
+                      {destinations.map((d) => (
+                        <option key={d} value={d}>
+                          {d}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
                   {/* Trip Timing */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">When are you planning your next trip? *</label>
+                    <label className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+                      When are you planning your next trip? *
+                    </label>
                     <select
                       name="timing"
                       required
@@ -218,7 +276,9 @@ function InquiryForm() {
                     >
                       <option value="">Select timing</option>
                       {tripTimings.map((t) => (
-                        <option key={t} value={t}>{t}</option>
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -233,7 +293,6 @@ function InquiryForm() {
                 </form>
               )}
             </div>
-
           </div>
         </div>
       </div>
