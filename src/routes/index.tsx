@@ -274,7 +274,7 @@ function Index() {
                       LKR 94,500<span className="text-lg text-muted-foreground">/-</span>
                     </p>
                   </div>
-                  <span className="text-sm font-semibold text-accent">Visa Fees Free</span>
+                  <span className="text-sm font-semibold text-accent">Visa Processing Free</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   {tour2Includes.map((item, i) => (
@@ -299,8 +299,35 @@ function Index() {
         </div>
       </section>
 
+      {/* Our Services */}
+      <section id="services" className="py-24 bg-secondary/40">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent">Our Services</p>
+            <h2 className="font-display text-5xl md:text-6xl mt-3">What We Offer</h2>
+            <p className="text-muted-foreground mt-4">
+              Comprehensive travel solutions tailored to your needs.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              "Air Ticketing - Corporate & Seafarer",
+              "Inbound Tours",
+              "Outbound Tours",
+              "Visa Assistance",
+              "Hotel Bookings - Local and International",
+              "Any Travel Related Services",
+            ].map((service, i) => (
+              <div key={i} className="text-center p-6 bg-white rounded-2xl shadow-sm border border-border">
+                <h3 className="font-display text-xl text-primary">{service}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why us */}
-      <section className="py-24 bg-secondary/40">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
           {[
             {
@@ -346,25 +373,26 @@ function Index() {
             Reach out to our team for bookings, queries, or to customise your itinerary.
           </p>
           <div className="grid md:grid-cols-3 gap-6 mt-12 text-left">
-            <a
-              href="tel:+94114511064"
-              className="bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 rounded-2xl p-6 transition-smooth hover:bg-primary-foreground/15"
-            >
+            <div className="bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 rounded-2xl p-6">
               <Phone className="w-6 h-6 mb-3" />
               <p className="text-xs uppercase tracking-widest text-primary-foreground/70">
                 Call us
               </p>
-              <p className="text-xl font-semibold mt-1">+94 11 4511064</p>
-            </a>
+              <div className="space-y-1 mt-1">
+                <p className="block text-xl font-semibold">+94 11 4511064</p>
+                <p className="block text-xl font-semibold">+94 76 8422000</p>
+                <p className="block text-xl font-semibold">+94 77 2824362</p>
+              </div>
+            </div>
             <a
-              href="mailto:travels@ceyline.lk"
+              href="mailto:outbound@ceyline.lk"
               className="bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 rounded-2xl p-6 transition-smooth hover:bg-primary-foreground/15"
             >
               <Mail className="w-6 h-6 mb-3" />
               <p className="text-xs uppercase tracking-widest text-primary-foreground/70">
                 Email us
               </p>
-              <p className="text-xl font-semibold mt-1">travels@ceyline.lk</p>
+              <p className="text-xl font-semibold mt-1">outbound@ceyline.lk</p>
             </a>
             <div className="bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 rounded-2xl p-6">
               <MapPin className="w-6 h-6 mb-3" />
@@ -375,6 +403,16 @@ function Index() {
                 No 536, R A De Mel Mawatha, Colombo 3, Sri Lanka
               </p>
             </div>
+          </div>
+          <div className="mt-12">
+            <a
+              href="https://www.google.com/search?q=ceylinetravels.lk&rlz=1C1CHBF_enLK1151LK1154&oq=cey&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIICAEQRRgnGDsyBggCEEUYOTIGCAMQRRg7MgoIBBAAGLEDGIAEMgoIBRAAGLEDGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgoICBAAGLEDGIAEMgcICRAAGI8C0gEJMjczNmowajE1qAIIsAIB8QVPmOuVdWSzWfEFT5jrlXVks1k&sourceid=chrome&ie=UTF-8#lrd=0x3ae25bdf9e8770d3:0x2ed5aba3c11b77e6,3,,,,"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-primary-foreground text-primary px-8 py-3 rounded-lg font-bold uppercase tracking-wider hover:bg-primary-foreground/90 transition-smooth"
+            >
+              Leave a Review
+            </a>
           </div>
         </div>
       </section>
