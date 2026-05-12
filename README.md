@@ -70,43 +70,6 @@ vercel.json               # SPA routing rewrite rules
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or bun
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/NadilaBasilu/holiday-hopes-co.git
-cd holiday-hopes-co
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## 📦 Available Scripts
-
-```bash
-npm run dev        # Start local development server
-npm run build      # Build for production (outputs to /dist)
-npm run preview    # Preview the production build locally
-npm run lint       # Run ESLint
-npm run format     # Format code with Prettier
-```
-
----
-
 ## 📧 Email Integration
 
 This project uses **EmailJS** to handle the inquiry form directly from the browser — no backend or server required.
